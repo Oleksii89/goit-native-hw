@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import Form from "../components/Form";
 
 const image = require("../assets/bg-image.jpg");
 
@@ -9,6 +10,7 @@ const RegistrationScreen = () => (
     {/* <ImageBackground source={image} resizeMode="cover" style={styles.image}> */}
     <Image style={styles.avatar} />
     <Text style={styles.text}>Реєстрація</Text>
+    <Form />
     {/* </ImageBackground> */}
   </View>
 );
@@ -41,6 +43,8 @@ const styles = StyleSheet.create({
     color: "#212121",
     fontSize: 30,
     textAlign: "center",
+    marginTop: 32,
+    marginBottom: 17,
   },
   titleContainer: {
     flex: 1,

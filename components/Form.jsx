@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Button, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, Pressable } from "react-native";
 import { Formik } from "formik";
+import Button from "./Button";
 
-export default function Form({ register }) {
+export default function Form() {
   return (
     <View>
       <Formik
@@ -12,37 +13,40 @@ export default function Form({ register }) {
           password: "",
         }}
         onSubmit={(values, action) => {
-          register(values);
+          console.log(values);
           action.resetForm();
         }}
+        // onSubmit={(values, action) => {
+        //   register(values);
+        //   action.resetForm();
+        // }}
       >
-        {(props) => (
+        {({ values, handleChange, handleSubmit }) => (
           <View>
             <TextInput
               style={styles.input}
-              value={props.values.login}
+              value={values.login}
               placeholder="Логін"
-              onChangeText={props.handleChange("name")}
+              onChangeText={handleChange("login")}
             />
             <TextInput
               style={styles.input}
-              value={props.values.email}
-              multiline
+              value={values.email}
+              // onBlur={handleBlur("email")}
               placeholder="Адреса електронної пошти"
-              onChangeText={props.handleChange("email")}
+              onChangeText={handleChange("email")}
             />
             <TextInput
               style={styles.input}
-              value={props.values.password}
-              multiline
+              value={values.password}
               placeholder="Пароль"
-              onChangeText={props.handleChange("password")}
+              onChangeText={handleChange("password")}
             />
 
             <Button
-              style={styles.buttonAdd}
-              title="Add"
-              onPress={props.handleSubmit}
+              style={styles.registerBtn}
+              label={"Зареєструватися"}
+              onPress={handleSubmit}
             />
           </View>
         )}
@@ -53,17 +57,15 @@ export default function Form({ register }) {
 
 const styles = StyleSheet.create({
   input: {
+    width: 343,
+    height: 50,
     borderWidth: 1,
     marginTop: 15,
     paddingLeft: 16,
     paddingTop: 16,
     paddingBottom: 15,
-    borderRadius: 1,
+    borderRadius: 8,
     borderColor: "#E8E8E8",
-  },
-  buttonAdd: {
-    marginTop: 15,
-    borderRadius: 5,
-    backgroundColor: "yellow",
+    backgroundColor: "#F6F6F6",
   },
 });
